@@ -13,9 +13,9 @@ map<char, int> precedence = {
     {'^', 3}, 
 };
 
-char arr[10];
+char arr[20];
 int top = -1;
-const int MAX = 9;
+
 
 void push(char c){
     arr[++top] = c;
@@ -29,7 +29,7 @@ void pop(){
 }
 
 void lowPrecedence(int i){
-    while(arr[top] != '(' && precedence[expression.at(i)] <= precedence[arr[top]] && top == -1){
+    while(arr[top] != '(' && precedence[expression.at(i)] <= precedence[arr[top]] && top != -1){
         pop();
     }
     push(expression.at(i));
