@@ -6,7 +6,6 @@ int top = -1;
 int MAX = 4;
 
 void push(){
-
 if(top == MAX){
         cout << "************************" << endl;
         cout << "   STACK OVERFLOW " << endl;
