@@ -1,94 +1,95 @@
 #include <iostream>
 using namespace std;
 
-int arr[5];
-int top = -1;
-int MAX = 4;
+int arr[10];
+int back  = -1;
+const int MAX = 9;
 
-void push(){
-if(top == MAX){
+void enque(){
+    if(back == MAX){
         cout << "************************" << endl;
-        cout << "   STACK OVERFLOW " << endl;
+        cout << "   QUEUE IS FULL " << endl;
         cout << "************************" << endl;
         return;  
-}
-else{
-    int value;
-    cout << "Enter the value: ";
-    cin >> value;
-    top++;
-    arr[top] = value;
-    cout << "************************" << endl;
-    cout << arr[top] << " was pushed to the top of stack" << endl;
-    cout << "************************" << endl;
-return;
-
-}
-}
-  
-void pop(){
-    if(top == -1){
+    }else{
+        int value = 0;
+        cout << "Enter the value: ";
+        cin >> value;
+        arr[++back] = value;
         cout << "************************" << endl;
-        cout << "   STACK UNDERFLOW " << endl;
+        cout << arr[back] << " was added to the queue" << endl;
+        cout << "************************" << endl;
+
+    }
+    return;
+}
+
+void deque(){
+     if(back == -1){
+        cout << "************************" << endl;
+        cout << "   QUEUE IS EMPTY " << endl;
         cout << "************************" << endl;
         return;
     }
     else{
         cout << "************************" << endl;
-        cout << arr[top] << " popped from the stack" << endl;
+        cout << arr[0] << " popped from the stack" << endl;
         cout << "************************" << endl;
-        top--;
+        for(int i = 0; i < back; i++){
+            arr[i] = arr[i + 1];
+        }
+        --back;
         return;
     }
 }
 
 void peek(){
-    if(top == -1){
+    if(back == -1){
         cout << "************************" << endl;
-        cout << "   STACK IS EMPTY  " << endl;
+        cout << "  QUEUE IS EMPTY  " << endl;
         cout << "************************" << endl;
         return;
     }
     else{
-        cout << "************************" << endl;
-        cout << arr[top] << " is at the top of the stack  " << endl;
-        cout << "************************" << endl;
+        cout << "*****************************" << endl;
+        cout << arr[0] << " is at the front of the queue  " << endl;
+        cout << "*****************************" << endl;
         return;
     }
 }
 
 void isEMPTY(){
-    if(top == -1){
+    if(back == -1){
         cout << "************************" << endl;
-        cout << "   STACK IS EMPTY  " << endl;
+        cout << "   QUEUE IS EMPTY  " << endl;
         cout << "************************" << endl;
         return;
     }
      else{
         cout << "************************" << endl;
-        cout << "   STACK IS NOT EMPTY  " << endl;
+        cout << "   QUEUE IS NOT EMPTY  " << endl;
         cout << "************************" << endl;
         return;
     }
 }
 
 void isFULL(){
-    if(top == MAX){
+    if(back == MAX){
         cout << "************************" << endl;
-        cout << "   STACK IS FULL  " << endl;
+        cout << "   QUEUE IS FULL  " << endl;
         cout << "************************" << endl;
         return;
     }
      else{
         cout << "************************" << endl;
-        cout << "   STACK IS NOT FULL  " << endl;
+        cout << "   QUEUE IS NOT FULL  " << endl;
         cout << "************************" << endl;
         return;
     }
 }
 
 void display(){
-if(top == -1){
+if(back == -1){
     cout << "************************" << endl;
     cout << "   STACK IS EMPTY  " << endl;
     cout << "************************" << endl;
@@ -96,23 +97,24 @@ if(top == -1){
 }
 else{
     cout << "************************" << endl;
-    for(int i = 0; i <= top; i++){
+    cout << "Front -> ";
+    for(int i = 0; i <= back; i++){
         cout << arr[i] << " ";
     }
-    cout << " <- Top";
+    cout << " <- Back";
     cout << "\n************************" << endl;
     return;
 }
 }
 
-int main(){
 
+int main(){
 int input;
 
 do{
 
-cout << "CHOOSE 1 FOR PUSH\n"
-     << "CHOOSE 2 FOR POP\n"
+cout << "CHOOSE 1 FOR ENQUE\n"
+     << "CHOOSE 2 FOR DEQUE\n"
      << "CHOOSE 3 FOR PEEK\n"
      << "CHOOSE 4 FOR isEMPTY\n"
      << "CHOOSE 5 FOR isFULL\n"
@@ -122,11 +124,11 @@ cout << "CHOOSE 1 FOR PUSH\n"
     cin >> input;
 
 if(input == 1){
-    push();
+    enque();
 }
 
 else if(input == 2){
-    pop();
+    deque();
 }
 
 else if(input == 3){
@@ -159,6 +161,5 @@ cout << "************************" << endl;
 }
 
 }while(input != 7);
-
 return 0;
 }
