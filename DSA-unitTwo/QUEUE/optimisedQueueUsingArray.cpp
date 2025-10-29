@@ -33,7 +33,7 @@ void deque(){
     }
     else{
         cout << "************************" << endl;
-        cout << arr[0] << " popped from the stack" << endl;
+        cout << arr[0] << " popped from the queue" << endl;
         cout << "************************" << endl;
         for(int i = 0; i < back; i++){
             arr[i] = arr[i + 1];

@@ -4,10 +4,10 @@ using namespace std;
 int arr[10];
 int front = -1;
 int back  = -1;
-const int MAX = 9;
+const int size = 10;
 
 void enque(){
-    if(back == MAX){
+    if((back+1) % size == front){
         cout << "************************" << endl;
         cout << "   QUEUE IS FULL " << endl;
         cout << "************************" << endl;
@@ -26,7 +26,8 @@ void enque(){
         int value = 0;
         cout << "Enter the value: ";
         cin >> value;
-        arr[++back] = value;
+        back = (back+1)%size;
+        arr[back] = value;
         cout << "************************" << endl;
         cout << arr[back] << " was added to the queue" << endl;
         cout << "************************" << endl;
@@ -53,7 +54,7 @@ void deque(){
         cout << "************************" << endl;
         cout << arr[front] << " popped from the queue" << endl;
         cout << "************************" << endl;
-        ++front;
+        front = (front+1)%size;
         return;
     }
 }
@@ -89,7 +90,7 @@ void isEMPTY(){
 }
 
 void isFULL(){
-    if(back == MAX){
+    if((back+1)%size == front){
         cout << "************************" << endl;
         cout << "   QUEUE IS FULL  " << endl;
         cout << "************************" << endl;
@@ -113,8 +114,11 @@ if(front == -1){
 else{
     cout << "************************" << endl;
     cout << "Front -> ";
-    for(int i = front; i <= back; i++){
+    int i = front;
+    while(true){
         cout << arr[i] << " ";
+        if(i == back)break;
+        i = (i+1)%size;
     }
     cout << " <- Back";
     cout << "\n************************" << endl;
