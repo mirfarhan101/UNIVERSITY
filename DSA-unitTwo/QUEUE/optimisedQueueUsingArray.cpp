@@ -2,7 +2,6 @@
 using namespace std;
 
 int arr[10];
-int top = -1;
 int back  = -1;
 const int MAX = 9;
 
@@ -12,16 +11,6 @@ void enque(){
         cout << "   QUEUE IS FULL " << endl;
         cout << "************************" << endl;
         return;  
-    }else if(top == -1 && back == -1){
-        int value = 0;
-        cout << "Enter the value: ";
-        cin >> value;
-        ++top;
-        arr[++back] = value;
-        cout << "************************" << endl;
-        cout << arr[back] << " was added to the queue" << endl;
-        cout << "************************" << endl;
-        return;
     }else{
         int value = 0;
         cout << "Enter the value: ";
@@ -30,36 +19,32 @@ void enque(){
         cout << "************************" << endl;
         cout << arr[back] << " was added to the queue" << endl;
         cout << "************************" << endl;
-        return;
+
     }
-    
+    return;
 }
 
 void deque(){
-     if(top == -1){
+     if(back == -1){
         cout << "************************" << endl;
         cout << "   QUEUE IS EMPTY " << endl;
         cout << "************************" << endl;
         return;
     }
-    else if(top == back){
-        cout << "************************" << endl;
-        cout << arr[top] << " popped from the stack" << endl;
-        cout << "************************" << endl;
-        top = back = -1;
-        return;
-    }
     else{
         cout << "************************" << endl;
-        cout << arr[top] << " popped from the stack" << endl;
+        cout << arr[0] << " popped from the stack" << endl;
         cout << "************************" << endl;
-        ++top;
+        for(int i = 0; i < back; i++){
+            arr[i] = arr[i + 1];
+        }
+        --back;
         return;
     }
 }
 
 void peek(){
-    if(top == -1){
+    if(back == -1){
         cout << "************************" << endl;
         cout << "  QUEUE IS EMPTY  " << endl;
         cout << "************************" << endl;
@@ -67,14 +52,14 @@ void peek(){
     }
     else{
         cout << "*****************************" << endl;
-        cout << arr[top] << " is at the front of the queue  " << endl;
+        cout << arr[0] << " is at the front of the queue  " << endl;
         cout << "*****************************" << endl;
         return;
     }
 }
 
 void isEMPTY(){
-    if(top == -1){
+    if(back == -1){
         cout << "************************" << endl;
         cout << "   QUEUE IS EMPTY  " << endl;
         cout << "************************" << endl;
@@ -104,16 +89,16 @@ void isFULL(){
 }
 
 void display(){
-if(top == -1){
+if(back == -1){
     cout << "************************" << endl;
-    cout << "   QUEUE IS EMPTY  " << endl;
+    cout << "   STACK IS EMPTY  " << endl;
     cout << "************************" << endl;
     return;
 }
 else{
     cout << "************************" << endl;
     cout << "Front -> ";
-    for(int i = top; i <= back; i++){
+    for(int i = 0; i <= back; i++){
         cout << arr[i] << " ";
     }
     cout << " <- Back";
